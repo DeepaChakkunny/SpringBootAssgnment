@@ -18,7 +18,8 @@ import com.springboot.assignment.service.AssignmentService;
 @Service
 public class AssignmentServiceImpl implements AssignmentService {
 
-	public String  getFibonacciNumber(int n) {
+	public String  getFibonacciNumber(String nThNum) {
+		int n=Integer.parseInt(nThNum);
 
 		BigInteger x = new BigInteger(String.valueOf(1)); ; 
 
@@ -41,44 +42,48 @@ public class AssignmentServiceImpl implements AssignmentService {
 
 		StringTokenizer tokenizer =new StringTokenizer(sentence);
 		StringBuilder senetenceReverse =new StringBuilder();
-		
+
 		while(tokenizer.hasMoreTokens()) {
 			senetenceReverse.append(new StringBuilder(tokenizer.nextToken()).reverse());
 			senetenceReverse.append(" ");
-			
+
 		}
 		return senetenceReverse.toString().trim();
-		
+
 
 	}
-	public String getTriangleType(int side1,int side2, int side3) {
-	
+	public String getTriangleType(String s1,String s2, String s3) {
+		
+		int side1=Integer.parseInt(s1);
+		int side2=Integer.parseInt(s2);
+		int side3=Integer.parseInt(s3);
+
 		//A triangle is valid if sum of its two sides is greater than the third side.
 		if(!(side1+side2>side3 && side1+side3>side2 && side2+side3>side1)) {
 			return "Oops! Invalid triangle -These three sides cant form triangle ";
 		}else if(side1==side2 && side2 ==side3) {
-			
-			return "Equilateral   Triangle";
+
+			return "Equilateral";
 		}
 		else if(side1==side2 || side1==side3 ||side2==side3) {
 
-			return "Isosceles  Triangle";
+			return "Isosceles";
 		}else {
-			return "Scalene Triangle";
+			return "Scalene";
 		}
 
 
 	}
 	public OneArrayResponse oneArrayresponse(OneArrayRequest request) {
-		
+
 		System.out.println(request.getValues().values());
 		SortedSet<Integer> array = new TreeSet<Integer>();
 		List<List<Integer>> list =new ArrayList<List<Integer>>(request.getValues().values());
 		Iterator<List<Integer>> iterator =list.iterator();
-		
+
 		while(iterator.hasNext()) {
-	         array.addAll( iterator.next());
-	      }    
+			array.addAll( iterator.next());
+		}    
 		OneArrayResponse resp = new OneArrayResponse();
 		resp.setArray1(array.toArray());
 		return  resp;

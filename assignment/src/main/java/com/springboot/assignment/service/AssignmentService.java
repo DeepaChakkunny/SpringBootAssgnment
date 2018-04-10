@@ -6,9 +6,9 @@ import com.springboot.assignment.model.OneArrayResponse;
 
 public interface AssignmentService {
 	
-	String  getFibonacciNumber(int n);
+	String  getFibonacciNumber(String n);
 	String reverseWordsInSentence(String sentence);
-	String getTriangleType(int side1,int side2, int side3);
+	String getTriangleType(String side1,String side2, String side3);
 	OneArrayResponse oneArrayresponse(OneArrayRequest request);
 
 }

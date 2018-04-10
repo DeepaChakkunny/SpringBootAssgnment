@@ -16,12 +16,12 @@ import com.springboot.assignment.service.AssignmentService;
 @ComponentScan("com.springboot.assignment.*")
 @RequestMapping("/api")
 public class AssignmentController {
-	
+
 	@Autowired
 	private AssignmentService service;
 
-	@RequestMapping(value="/Fibonacci",method=RequestMethod.GET, produces = "application/json; charset=utf-8")
-	public String getFibonacciNumber(HttpServletRequest request, HttpServletResponse response, @RequestParam("n") int n) {
+	@RequestMapping(value="/Fibonacci",method=RequestMethod.GET,produces = "application/json; charset=utf-8")
+	public String getFibonacciNumber( @RequestParam(value="n") String n ) {
 		return service.getFibonacciNumber(n);
 	}
 	@RequestMapping(value="/ReverseWords",method=RequestMethod.GET, produces = "application/json; charset=utf-8")
@@ -30,19 +30,15 @@ public class AssignmentController {
 	}
 	@RequestMapping(value="/TriangleType",method=RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public String getTriangleType(HttpServletRequest request, HttpServletResponse response,
-								  @RequestParam("a") int side1,
-								  @RequestParam("b") int side2,
-								  @RequestParam("c") int side3) {
-		return service.getTriangleType(side1, side2, side3);
+			@RequestParam("a") String side1,
+			@RequestParam("b") String side2,
+			@RequestParam("c") String side3) {
+		return service.getTriangleType(side1,side2,side3);
 	}
 	@RequestMapping(value="/makeonearray",method = RequestMethod.POST, produces = "application/json; charset=utf-8")
 	public  OneArrayResponse oneArrayResponse(HttpServletRequest request, HttpServletResponse response,@RequestBody OneArrayRequest list) {
 		return service.oneArrayresponse(list);
-		
-	}
-	
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(AssignmentController.class, args);
+
 	}
 
 }
